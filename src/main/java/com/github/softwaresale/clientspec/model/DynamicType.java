@@ -8,6 +8,6 @@ public record DynamicType(
         List<DynamicType> nested
 ) {
     public static DynamicType primitive(DynamicTypeID typeID) {
-        return new DynamicType(typeID, null, null);
+        return new DynamicType(typeID, "", List.of());
     }
 }
