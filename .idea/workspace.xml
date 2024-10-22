@@ -4,37 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b09a26e-ff4b-4d85-bd24-87aa16cb46c2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/DynamicTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EndpointTemplateParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EntityResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/HttpMethodConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/RequestMappingDecomposer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/APIEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/APIEndpointMetadata.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/APISpec.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicTypeID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/EndpointTemplate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/EntitySpec.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/PropertySpec.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/RequestValue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/ServiceSpec.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/util/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/github/softwaresale/clientspec/ExampleController.java" afterDir="false" />
+    <list default="true" id="2b09a26e-ff4b-4d85-bd24-87aa16cb46c2" name="Changes" comment="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EntityMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EntitySpecMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/DynamicTypeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/DynamicTypeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EndpointTemplateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EndpointTemplateParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicTypeID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicTypeID.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +66,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -98,24 +82,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.client-spec [assemble].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.client-spec [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.client-spec [jar].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.client-spec [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/charlie/Programming/mixtape-api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.client-spec [assemble].executor": "Run",
+    "Gradle.client-spec [clean].executor": "Run",
+    "Gradle.client-spec [jar].executor": "Run",
+    "Gradle.client-spec [publishToMavenLocal].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature/add-entities",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/charlie/Programming/mixtape-api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Gradle.client-spec [publishToMavenLocal]">
     <configuration name="client-spec [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -235,11 +219,48 @@
       <workItem from="1729610250433" duration="1621000" />
       <workItem from="1729612687402" duration="4512000" />
       <workItem from="1729617819355" duration="14000" />
-      <workItem from="1729617841930" duration="4014000" />
+      <workItem from="1729617841930" duration="4448000" />
+      <workItem from="1729627495092" duration="4064000" />
     </task>
+    <task id="LOCAL-00001" summary="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs">
+      <option name="closed" value="true" />
+      <created>1729622044523</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729622044523</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs" />
   </component>
 </project>

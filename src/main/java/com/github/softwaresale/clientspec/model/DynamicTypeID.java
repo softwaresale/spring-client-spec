@@ -10,5 +10,6 @@ public enum DynamicTypeID {
     USER,
     ARRAY,
     GENERIC,
-    ANY
+    ANY,
+    TIMESTAMP,
 }

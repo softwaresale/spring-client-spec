@@ -12,10 +12,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.FileObject;
-import javax.tools.JavaFileManager;
 import javax.tools.StandardLocation;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Set;
@@ -63,6 +60,11 @@ public class ControllerProcessor extends AbstractProcessor {
                 }
             }
         }
+
+        // at this point, we have all entity elements. We now need to expand these into types
+        controllerVisitor.getEntityMap().getRegisteredElements().stream()
+                .map(EntitySpecMapper::mapDeclaredTypeElement)
+                .forEach(apiSpec::addEntity);
 
         // output our API document
         try {

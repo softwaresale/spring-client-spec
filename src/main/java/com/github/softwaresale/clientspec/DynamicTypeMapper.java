@@ -4,10 +4,8 @@ import com.github.softwaresale.clientspec.model.DynamicType;
 import com.github.softwaresale.clientspec.model.DynamicTypeID;
 
 import javax.lang.model.type.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class DynamicTypeMapper implements TypeVisitor<DynamicType, Void> {
 
@@ -17,6 +15,7 @@ public class DynamicTypeMapper implements TypeVisitor<DynamicType, Void> {
     static {
         // well-known scalar types
         wellKnownDeclaredScalarTypes.put(Object.class.getSimpleName(), DynamicTypeID.ANY);
+        wellKnownDeclaredScalarTypes.put(Boolean.class.getSimpleName(), DynamicTypeID.BOOLEAN);
         wellKnownDeclaredScalarTypes.put(Character.class.getSimpleName(), DynamicTypeID.CHAR);
         wellKnownDeclaredScalarTypes.put(Byte.class.getSimpleName(), DynamicTypeID.CHAR);
         wellKnownDeclaredScalarTypes.put(String.class.getSimpleName(), DynamicTypeID.STRING);
@@ -25,10 +24,12 @@ public class DynamicTypeMapper implements TypeVisitor<DynamicType, Void> {
         wellKnownDeclaredScalarTypes.put(Long.class.getSimpleName(), DynamicTypeID.INTEGER);
         wellKnownDeclaredScalarTypes.put(Float.class.getSimpleName(), DynamicTypeID.FLOAT);
         wellKnownDeclaredScalarTypes.put(Double.class.getSimpleName(), DynamicTypeID.FLOAT);
+        wellKnownDeclaredScalarTypes.put(LocalDateTime.class.getSimpleName(), DynamicTypeID.TIMESTAMP);
 
         // well-known sequence types
         wellKnownDeclaredSequenceTypes.put(Set.class.getSimpleName(), DynamicTypeID.ARRAY);
         wellKnownDeclaredSequenceTypes.put(List.class.getSimpleName(), DynamicTypeID.ARRAY);
+        wellKnownDeclaredSequenceTypes.put(ArrayList.class.getSimpleName(), DynamicTypeID.ARRAY);
     }
 
 
@@ -141,5 +142,25 @@ public class DynamicTypeMapper implements TypeVisitor<DynamicType, Void> {
     @Override
     public DynamicType visitIntersection(IntersectionType intersectionType, Void unused) {
         return null;
+    }
+
+    /**
+     * Given a type, determine if it is a primitive type, including special declared types
+     * @param typeMirror The type
+     * @return True if the given type is a primitive type
+     */
+    public static boolean isPrimitiveType(TypeMirror typeMirror) {
+        if (typeMirror.getKind().isPrimitive()) {
+            return true;
+        }
+
+        // if declared type and well known
+        if (typeMirror instanceof DeclaredType declaredType) {
+            return wellKnownDeclaredSequenceTypes.containsKey(declaredType.asElement().getSimpleName().toString())
+                    || wellKnownDeclaredScalarTypes.containsKey(declaredType.asElement().getSimpleName().toString());
+        }
+
+        // otherwise, no
+        return false;
     }
 }
