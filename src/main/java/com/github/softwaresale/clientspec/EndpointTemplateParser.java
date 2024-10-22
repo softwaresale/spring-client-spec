@@ -28,7 +28,17 @@ public class EndpointTemplateParser {
         groupFinder = Pattern.compile("\\{\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*}");
     }
 
-    public static EndpointTemplate parse(String endpointTemplate, Element methodElement) {
+    private final EntityMap entityMap;
+
+    public EndpointTemplateParser() {
+        this(new EntityMap());
+    }
+
+    public EndpointTemplateParser(EntityMap entityMap) {
+        this.entityMap = entityMap;
+    }
+
+    public EndpointTemplate parse(String endpointTemplate, Element methodElement) {
         ExecutableElement executableElement = (ExecutableElement) methodElement;
 
         Map<String, RequestValue> pathVariables = extractPathVariables(executableElement);
@@ -43,10 +53,11 @@ public class EndpointTemplateParser {
         return new EndpointTemplate(expandedTemplate, pathVariables, queryVariables);
     }
 
-    private static Map<String, RequestValue> extractPathVariables(ExecutableElement methodElement) {
+    private Map<String, RequestValue> extractPathVariables(ExecutableElement methodElement) {
         return methodElement.getParameters().stream()
-                .peek(param -> logger.info("got parameter {}", param.getSimpleName()))
                 .filter(param -> param.getAnnotation(PathVariable.class) != null)
+                // try to register the path variable type, if necessary
+                .peek(param -> this.entityMap.tryRegisterType(param.asType()))
                 .map(param -> {
                     PathVariable pathVariableAnnotation = param.getAnnotation(PathVariable.class);
 
@@ -71,10 +82,12 @@ public class EndpointTemplateParser {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private static Map<String, RequestValue> extractQueryParameters(Element methodElement) {
+    private Map<String, RequestValue> extractQueryParameters(Element methodElement) {
         return methodElement.getEnclosedElements().stream()
                 .filter(param -> param.getKind() == ElementKind.PARAMETER)
                 .filter(param -> param.getAnnotation(RequestParam.class) != null)
+                // try to register the request param type
+                .peek(param -> this.entityMap.tryRegisterType(param.asType()))
                 .map(param -> {
                     RequestParam requestParamAnnotation = param.getAnnotation(RequestParam.class);
 

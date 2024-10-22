@@ -31,6 +31,19 @@ public class ControllerVisitor {
         handlerAnnotations.add(PatchMapping.class);
     }
 
+    /** Used to hold entities involved */
+    private final EntityMap entityMap;
+    private final EndpointTemplateParser endpointTemplateParser;
+
+    public ControllerVisitor() {
+        this(new EntityMap());
+    }
+
+    public ControllerVisitor(EntityMap entityMap) {
+        this.entityMap = entityMap;
+        this.endpointTemplateParser = new EndpointTemplateParser(entityMap);
+    }
+
     /**
      * Determine if we can accept the given annotated element
      * @param annotatedElement the element to test
@@ -71,6 +84,10 @@ public class ControllerVisitor {
         return new ServiceSpec(controllerClass.getSimpleName().toString(), endpoints);
     }
 
+    public EntityMap getEntityMap() {
+        return entityMap;
+    }
+
     private boolean methodIsHandler(Element element) {
         for (var anno : handlerAnnotations) {
             if (element.getAnnotation(anno) != null) {
@@ -103,17 +120,23 @@ public class ControllerVisitor {
         // TODO map this to a template and parse out handler variables
 
         // figure out path variables etc.
-        EndpointTemplate endpointTemplate = EndpointTemplateParser.parse(handlerPath, element);
+        EndpointTemplate endpointTemplate = endpointTemplateParser.parse(handlerPath, element);
 
         // find the response body
         ExecutableElement executableElement = (ExecutableElement) element;
 
         DynamicType responseType = executableElement.getReturnType().accept(dynamicTypeMapper, null);
+        this.entityMap.tryRegisterType(executableElement.getReturnType());
         RequestValue responseBody = new RequestValue(responseType, true);
 
         DynamicType requestBodyType = executableElement.getParameters().stream()
+                // look for a parameter annotated with RequestBody
                 .filter(param -> param.getAnnotation(RequestBody.class) != null)
+                // Try to register the request body type if it's declared
+                .peek(param -> this.entityMap.tryRegisterType(param.asType()))
+                // map the type into a dynamic type
                 .map(param -> param.asType().accept(dynamicTypeMapper, null))
+                // if there was no request body specified, it's void
                 .findFirst()
                 .orElse(DynamicType.primitive(DynamicTypeID.VOID));
         RequestValue requestBody = new RequestValue(requestBodyType, false);
