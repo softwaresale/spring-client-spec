@@ -1,7 +1,9 @@
 package com.github.softwaresale.clientspec.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Defines an entire API
@@ -12,10 +14,11 @@ import java.util.List;
 public record APISpec(
         String name,
         List<EntitySpec> entities,
-        List<ServiceSpec> services
+        List<ServiceSpec> services,
+        Map<String, Object> config
 ) {
     public APISpec(String name) {
-        this(name, new ArrayList<>(), new ArrayList<>());
+        this(name, new ArrayList<>(), new ArrayList<>(), new HashMap<>());
     }
 
     public void addEntity(EntitySpec entitySpec) {
@@ -24,5 +27,9 @@ public record APISpec(
 
     public void addService(ServiceSpec serviceSpec) {
         services.add(serviceSpec);
+    }
+
+    public void registerConfigProperty(String key, Object value) {
+        config.put(key, value);
     }
 }

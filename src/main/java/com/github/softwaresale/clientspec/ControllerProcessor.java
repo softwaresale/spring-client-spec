@@ -44,7 +44,8 @@ public class ControllerProcessor extends AbstractProcessor {
         logger.info("running client-spec annotation processor");
 
         // this is our API specification. We will visit all controllers and entities and place them in here
-        APISpec apiSpec = new APISpec("service");
+        APISpec apiSpec = new APISpec("MixTape");
+        apiSpec.registerConfigProperty("baseURL", "http://localhost:8080");
 
         for (TypeElement annotation : annotations) {
             Set<? extends Element> annotatedElements = roundEnvironment.getElementsAnnotatedWith(annotation);

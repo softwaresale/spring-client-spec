@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b09a26e-ff4b-4d85-bd24-87aa16cb46c2" name="Changes" comment="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EntityMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EntitySpecMapper.java" afterDir="false" />
+    <list default="true" id="2b09a26e-ff4b-4d85-bd24-87aa16cb46c2" name="Changes" comment="Finalize Entity integration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/ControllerVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/DynamicTypeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/DynamicTypeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EndpointTemplateParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/EndpointTemplateParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicTypeID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/DynamicTypeID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/APISpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/softwaresale/clientspec/model/APISpec.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,24 +76,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.client-spec [assemble].executor": "Run",
-    "Gradle.client-spec [clean].executor": "Run",
-    "Gradle.client-spec [jar].executor": "Run",
-    "Gradle.client-spec [publishToMavenLocal].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/add-entities",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/charlie/Programming/mixtape-api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.client-spec [assemble].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.client-spec [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.client-spec [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.client-spec [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/add-entities&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/charlie/Programming/mixtape-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.client-spec [publishToMavenLocal]">
     <configuration name="client-spec [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -220,7 +214,10 @@
       <workItem from="1729612687402" duration="4512000" />
       <workItem from="1729617819355" duration="14000" />
       <workItem from="1729617841930" duration="4448000" />
-      <workItem from="1729627495092" duration="4064000" />
+      <workItem from="1729627495092" duration="4272000" />
+      <workItem from="1729701078915" duration="7000" />
+      <workItem from="1729802129716" duration="233000" />
+      <workItem from="1729814681272" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs">
       <option name="closed" value="true" />
@@ -230,7 +227,31 @@
       <option name="project" value="LOCAL" />
       <updated>1729622044523</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix dynamic default types">
+      <option name="closed" value="true" />
+      <created>1729631681040</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729631681040</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add support for keeping track of entities&#10;&#10;Add an `EntityMap` class that records all entities that&#10;we run into as we process the API">
+      <option name="closed" value="true" />
+      <created>1729631750604</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1729631750604</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finalize Entity integration">
+      <option name="closed" value="true" />
+      <created>1729631758761</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729631758761</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,7 +268,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="feature/add-entities" />
                       </list>
                     </value>
                   </entry>
@@ -261,6 +282,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup basic controller visitor&#10;&#10;- views services&#10;- creates API specs" />
+    <MESSAGE value="Fix dynamic default types" />
+    <MESSAGE value="Add support for keeping track of entities&#10;&#10;Add an `EntityMap` class that records all entities that&#10;we run into as we process the API" />
+    <MESSAGE value="Finalize Entity integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalize Entity integration" />
   </component>
 </project>
